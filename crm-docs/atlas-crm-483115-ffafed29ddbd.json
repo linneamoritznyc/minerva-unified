@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "atlas-crm-483115",
+  "private_key_id": "ffafed29ddbd60c3ea332a7a77d4d3542eb3a48e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCgzBzB0vIxskr2\nCljbyIIUM72D0sRdBmVJPSUm27t3m1mFZ4EC8VgV3NLltl4bHQ9jc+CjhAcFpSND\n/+gI1lxNxxtF7rP6Sld7BTfjrNMsaVfndz5+wC7jiHoieaogDyNVk4yk+d9DNR+z\nUZgPHMT3rLLN7+qOut8MDYxlPd8uIEuuJsaAx7ZSYpw4abvpv6Bu/FbXukPqpXAy\n60maDpsZYx+oFrPYdjTmsxOxhkuBiL6GuOWyZlrseynQu6K4yfNmcjIgeaFitzrt\nYJhzsMUiYhDY6yhvybUODBnybRQeNj3dVpbW3wlR4xCO1Bvf9PyIAfroxW1w0idl\ntpLaBksRAgMBAAECggEAA7YqbMPqgMCpj8vV2L7kV8SI+Ze+HhqVcG8XojG8vkpI\n8vYcaX26J4kJGjHPMseFMSm90/BqfBQfgASSbc/K4iW4KLFVmK+qHMYWT+xPlI0a\n8RYUzHaxrmFaVlziEyreSS2md7Fn2KSLhodZ3/FtT30+RFgnHSPNnbjbVoPq2KTv\nUd9AoRe4Da6YpdLjV3JUpkN42K1bnwW89G1us/aUYdSGdwnFUgzaVo4OFc8Ut8fc\nzBts8VvbhufrrUtqgY3bonhqDOSmZLr7pMsjYv5ASaOiaJPBXELpEBZz5NCMriBr\ndsZfxA9M2v71JepB4TRwnCAo/kXJDjZ0kfIHZXTtdQKBgQDUhmR9SeLWElej7s/X\nbizFgukfhPmhDQzCc5cDI+VJWHDcmIF7fsUK0HB6gPcge55rUhSYCrUKWYmWJlwS\n88TdG4JWql63V8efQuJ+0YDPR4kgo3gkg1RUwBgrCpKDxPzNFWar1VmQKMjzwFBZ\njoXiaNISHX+G6PcPxdeWSVt1NQKBgQDBsNJR9LWNTYNyZjHU22mMFpK2AfQocwGl\neDAUpDpwBLzntY5OQN7qz6ryOgzbmAfB7ae4xUyPBFXfcX8y3kzZp0jz0gv5QE5a\n2NsPf/rcG8J3FxZfmaj6be8yrbvD5Bn9txWFpkD+FN5ZwBqeUjneal0H5q7ktjj3\nUZYTdKXF7QKBgAxLJd71ejCl6Pnro4wzrFVUiEWxfHsrdRR+eTrORcIjYovwKnVJ\nVP6WJhuAAEuZuwU8P0K4Q9awbTwJRgQ2o6mioLyAqG/0nPCCfvWVCt1ypuUDb7y0\n+Bja78r1lpoWuATo+wJvmfmz0kP/WOaFTwtUwuoXWLwmF7yK1ji0T50NAoGBAIFM\n7zpy5/gKdOObwUxdpNo1/36tUzblf4Xc9AvzjmdVYl40X2lx+N47/9xwUEEP/q3B\nXyQD4hXfSQw/EjD9IcRy3kqWQBQGj8gp2CNCxk7F4U3rBa6QP7PeS75DKIOe9JLg\n8+cik2SKvdygV6S1M5h83Nn3b22TD/haaJtYVYoJAoGAJVFPYZPSwVmuboQTqG90\nEkvX2ciypM7h110WllM9/QFxKX7aweuqI2E1WTsRsg6U/sCJhlGcjPA7gQegLa6j\nN5s2i69aMngLV1e7AYIqauz+dX1SH+nTtF2CxHvJU/LpXynB3k7qDv134HkZbevc\naJZ35LFCmJoxNJU/Tse61Ao=\n-----END PRIVATE KEY-----\n",
+  "client_email": "atlas-dashboard@atlas-crm-483115.iam.gserviceaccount.com",
+  "client_id": "108433286698695441347",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/atlas-dashboard%40atlas-crm-483115.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

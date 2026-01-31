@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      :root {
+        --brand-blue: #1a3a69;
+        --brand-green: #0F9D58;
+        --brand-red: #DB4437;
+        --brand-blue-light: #4285F4;
+        --brand-yellow: #F4B400;
+        --brand-purple: #673AB7;
+        --light-grey: #f7f9fc;
+        --border-color: #dfe1e5;
+        --text-dark: #202124;
+        --text-light: #5f6368;
+      }
+      @import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap');
+      
+      body {
+        font-family: "Google Sans", sans-serif;
+        background-color: var(--light-grey);
+        margin: 0;
+        padding: 20px;
+        color: var(--text-dark);
+      }
+      
+      #dashboard-container { max-width: 1200px; margin: 0 auto; }
+      h2 {
+        color: var(--brand-blue); letter-spacing: -0.5px;
+        margin-top: 0; border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px; margin-bottom: 24px;
+      }
+      
+      /* Main grid layout */
+      .main-grid { display: grid; grid-template-columns: 2.5fr 1fr; gap: 24px; }
+      .left-column { display: flex; flex-direction: column; gap: 24px; }
+      .right-column { display: flex; flex-direction: column; gap: 24px; }
+
+      /* KPI Card Grid */
+      .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+      .kpi-card {
+        background-color: #ffffff; border: 1px solid var(--border-color);
+        border-radius: 12px; padding: 24px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        display: flex; flex-direction: column; /* Allows link to sit at bottom */
+      }
+      .kpi-card .value { font-size: 2.2em; font-weight: 700; margin: 0; }
+      .kpi-card .label { font-size: 1.0em; color: var(--text-light); margin-top: 4px; flex-grow: 1; } /* flex-grow pushes link down */
+      .kpi-card.rate .value { color: var(--brand-green); } 
+      .kpi-card.contact .value { color: var(--brand-purple); }
+      .kpi-card.event .value { color: var(--brand-yellow); }
+      
+      /* 🌟 NEW: Quicklink Style 🌟 */
+      .quicklink {
+        font-size: 0.9em;
+        font-weight: 500;
+        color: var(--brand-blue-light);
+        text-decoration: none;
+        margin-top: 12px;
+        display: inline-block;
+        transition: transform 0.2s;
+      }
+      .quicklink:hover {
+        text-decoration: underline;
+        transform: translateX(3px); /* Slight move on hover */
+      }
+      
+      /* Funnel & Goal Containers */
+      .funnel-container, .goal-container, .event-container {
+        background-color: #ffffff;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      }
+      .funnel-container h2, .goal-container h2, .event-container h2 {
+         margin-top: 0; border: none; padding-bottom: 0; margin-bottom: 16px;
+      }
+      
+      /* Funnel */
+      .funnel-stage { display: flex; align-items: center; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #f0f0f0; }
+      .funnel-stage:last-child { border-bottom: none; margin-bottom: 0; }
+      .funnel-label { font-size: 1.1em; font-weight: 500; color: var(--text-light); width: 220px; }
+      .funnel-bar-container { flex-grow: 1; background-color: #f1f3f4; border-radius: 8px; height: 28px; overflow: hidden; }
+      .funnel-bar { background-color: var(--brand-blue-light); height: 100%; width: 0%; border-radius: 8px; transition: width 0.5s ease-out; }
+      .funnel-value { font-size: 1.1em; font-weight: 700; color: var(--brand-blue); margin-left: 20px; min-width: 60px; text-align: right; }
+      
+      /* Goal Tracker */
+      .goal-item { margin-bottom: 16px; }
+      .goal-label { font-size: 1.1em; font-weight: 500; color: var(--text-dark); margin-bottom: 8px; display: flex; justify-content: space-between; }
+      .goal-label .progress-text { color: var(--text-light); font-weight: 400; }
+      .progress-bar-bg { width: 100%; background-color: #e0e0e0; border-radius: 5px; height: 10px; overflow: hidden; }
+      .progress-bar-fg { height: 100%; width: 0%; background-color: var(--brand-green); border-radius: 5px; transition: width 0.5s ease-out; }
+
+      /* Event Tracker */
+      #countdown { display: flex; justify-content: space-around; text-align: center; margin: 16px 0; }
+      #countdown div { background-color: var(--light-grey); border-radius: 8px; padding: 10px; min-width: 60px; }
+      #countdown .value { font-size: 1.8em; font-weight: 700; color: var(--brand-blue); }
+      #countdown .label { font-size: 0.8em; color: var(--text-light); text-transform: uppercase; }
+      
+      /* Checklist */
+      #event-checklist { margin-top: 20px; }
+      .checklist-item {
+        display: flex;
+        align-items: center;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+        padding: 8px;
+        border-radius: 6px;
+        transition: background-color 0.2s;
+      }
+      .checklist-item:hover { background-color: #f1f3f4; }
+      .checklist-item input { margin-right: 12px; width: 18px; height: 18px; }
+      
+      /* Status/Error Messages */
+      .status-message { text-align: center; padding: 40px; font-size: 1.2em; color: var(--text-light); }
+      .error-message { color: var(--brand-red); font-weight: 500; padding: 20px; text-align: center; background-color: #fce8e6; border-radius: 8px; }
+    </style>
+  </head>
+  <body>
+
+    <div id="dashboard-container">
+      <div id="loading" class="status-message">Loading Strategic Dashboard... 📊</div>
+      
+      <div id="content" style="display: none;">
+        
+        <h2>Key Performance Indicators (KPIs)</h2>
+        <div class="kpi-grid">
+          
+          <div class="kpi-card contact">
+            <h3 class="value" id="kpi-total-schools">0</h3>
+            <p class="label">Total Schools</p>
+            <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1IPm1Fl8YwD3NP_GYWGJa_m_qBTGsdnbthGockemp8NY/edit" target="_blank">Go to sheet 🔗</a>
+          </div>
+          
+          <div class="kpi-card contact">
+            <h3 class="value" id="kpi-total-contacts">0</h3>
+            <p class="label">Total Contacts</p>
+            <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1IPm1Fl8YwD3NP_GYWGJa_m_qBTGsdnbthGockemp8NY/edit" target="_blank">Go to sheet 🔗</a>
+          </div>
+          
+          <div class="kpi-card contact">
+            <h3 class="value" id="kpi-warm-contacts">0</h3>
+            <p class="label">Warm Contacts</p>
+             <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1IPm1Fl8YwD3NP_GYWGJa_m_qBTGsdnbthGockemp8NY/edit" target="_blank">Go to sheet 🔗</a>
+          </div>
+          
+          <div class="kpi-card event">
+            <h3 class="value" id="kpi-event-pipeline">0</h3>
+            <p class="label">Event Pipeline</p>
+            <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1IPm1Fl8YwD3NP_GYWGJa_m_qBTGsdnbthGockemp8NY/edit" target="_blank">Go to sheet 🔗</a>
+          </div>
+          
+          <div class="kpi-card event">
+            <h3 class="value" id="kpi-confirmed-events">0</h3>
+            <p class="label">Confirmed Events</p>
+            <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1IPm1Fl8YwD3NP_GYWGJa_m_qBTGsdnbthGockemp8NY/edit" target="_blank">Go to sheet 🔗</a>
+          </div>
+        </div>
+        
+        <div class="main-grid" style="margin-top: 24px;">
+          
+          <div class="left-column">
+            <div class="funnel-container">
+              <h2>Overall Outreach Funnel</h2>
+              <div class="funnel-stage">
+                <div class="funnel-label">Total Schools</div>
+                <div class="funnel-bar-container"><div class="funnel-bar" id="bar-total"></div></div>
+                <div class="funnel-value" id="val-total">0</div>
+              </div>
+              <div class="funnel-stage">
+                <div class="funnel-label">Schools with Contact</div>
+                <div class="funnel-bar-container"><div class="funnel-bar" id="bar-contactable"></div></div>
+                <div class="funnel-value" id="val-contactable">0</div>
+              </div>
+              <div class="funnel-stage">
+                <div class="funnel-label">Contacted</div>
+                <div class="funnel-bar-container"><div class="funnel-bar" id="bar-contacted"></div></div>
+                <div class="funnel-value" id="val-contacted">0</div>
+              </div>
+              <div class="funnel-stage">
+                <div class="funnel-label">Responded</div>
+                <div class="funnel-bar-container"><div class="funnel-bar" id="bar-responded"></div></div>
+                <div class="funnel-value" id="val-responded">0</div>
+              </div>
+              <div class="funnel-stage">
+                <div class="funnel-label">Partnership Agreed</div>
+                <div class="funnel-bar-container"><div class="funnel-bar" id="bar-partnership"></div></div>
+                <div class="funnel-value" id="val-partnership">0</div>
+              </div>
+            </div>
+
+            <div class="kpi-grid">
+              <div class="kpi-card rate">
+                <h3 class="value" id="rate-contactable">--%</h3>
+                <p class="label">Contactable Rate</p>
+              </div>
+              <div class="kpi-card rate">
+                <h3 class="value" id="rate-outreach">--%</h3>
+                <p class="label">Outreach Rate</p>
+              </div>
+              <div class="kpi-card rate">
+                <h3 class="value" id="rate-response">--%</h3>
+                <p class="label">Response Rate</p>
+              </div>
+              <div class="kpi-card rate">
+                <h3 class="value" id="rate-partnership">--%</h3>
+                <p class="label">Partnership Rate</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="right-column">
+            <div class="goal-container">
+              <h2>Q3 2025 Goal Tracker</h2>
+              <div class="goal-item">
+                <div class="goal-label"><span>List Validation (Tier 1)</span><span class="progress-text" id="goal-list-text">0 / 150</span></div>
+                <div class="progress-bar-bg"><div class="progress-bar-fg" id="goal-list-bar"></div></div>
+              </div>
+              <div class="goal-item">
+                <div class="goal-label"><span>Targeted Outreach (UK/DE/CH)</span><span class="progress-text" id="goal-contact-text">0</span></div>
+              </div>
+              <div class="goal-item">
+                <div class="goal-label"><span>Meetings Secured</span><span class="progress-text" id="goal-meeting-text">0 / 7</span></div>
+                <div class="progress-bar-bg"><div class="progress-bar-fg" id="goal-meeting-bar"></div></div>
+              </div>
+            </div>
+            
+            <div class="event-container">
+              <h2 style="margin-bottom: 8px;">Next Confirmed Event</h2>
+              <h3 style="margin: 0; text-align: center; color: var(--brand-yellow);" id="event-name">Loading...</h3>
+              <div id="countdown">
+                <div><span class="value" id="cd-days">0</span><span class="label">Days</span></div>
+                <div><span class="value" id="cd-hours">0</span><span class="label">Hours</span></div>
+                <div><span class="value" id="cd-mins">0</span><span class="label">Mins</span></div>
+                <div><span class="value" id="cd-secs">0</span><span class="label">Secs</span></div>
+              </div>
+              <hr style="border: 0; border-top: 1px solid #f0f0f0; margin: 20px 0;">
+              <div id="event-checklist">
+                <h3>Pre-Event Checklist</h3>
+                <div id="checklist-loading" class="status-message" style="padding: 10px 0;">Loading checklist...</div>
+                </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // --- Global state for checklist ---
+      let currentEventName = null;
+      let countdownTimer = null;
+
+      document.addEventListener("DOMContentLoaded", function() {
+        google.script.run
+          .withSuccessHandler(drawDashboard)
+          .withFailureHandler(showError)
+          .getDashboardData();
+      });
+
+      function toPercent(num) { return (num * 100).toFixed(1) + "%"; }
+      function toPercentRaw(num, max) {
+        if (max === 0) return '0%';
+        return ((num / max) * 100) + "%";
+      }
+
+      function drawDashboard(data) {
+        if (data.error) { showError({ message: data.error }); return; }
+        
+        const { funnel, rates, q3_goal, events, new_kpis } = data;
+        
+        // --- 1. Populate NEW KPI Cards ---
+        document.getElementById('kpi-total-schools').innerText = funnel.totalSchools;
+        document.getElementById('kpi-total-contacts').innerText = new_kpis.totalContacts;
+        document.getElementById('kpi-warm-contacts').innerText = new_kpis.warmContacts;
+        document.getElementById('kpi-event-pipeline').innerText = new_kpis.eventPipeline;
+        document.getElementById('kpi-confirmed-events').innerText = new_kpis.confirmedEvents;
+
+        // --- 2. Populate Rate Cards ---
+        document.getElementById('rate-contactable').innerText = toPercent(rates.contactableRate);
+        document.getElementById('rate-outreach').innerText = toPercent(rates.outreachRate);
+        document.getElementById('rate-response').innerText = toPercent(rates.responseRate);
+        document.getElementById('rate-partnership').innerText = toPercent(rates.partnershipRate);
+
+        // --- 3. Populate Funnel ---
+        document.getElementById('val-total').innerText = funnel.totalSchools;
+        document.getElementById('val-contactable').innerText = funnel.schoolsWithContact;
+        document.getElementById('val-contacted').innerText = funnel.stageContacted;
+        document.getElementById('val-responded').innerText = funnel.stageResponded;
+        document.getElementById('val-partnership').innerText = funnel.stagePartnership;
+        const maxVal = funnel.totalSchools;
+        if (maxVal > 0) {
+          document.getElementById('bar-total').style.width = '100%';
+          document.getElementById('bar-contactable').style.width = toPercentRaw(funnel.schoolsWithContact, maxVal);
+          document.getElementById('bar-contacted').style.width = toPercentRaw(funnel.stageContacted, maxVal);
+          document.getElementById('bar-responded').style.width = toPercentRaw(funnel.stageResponded, maxVal);
+          document.getElementById('bar-partnership').style.width = toPercentRaw(funnel.stagePartnership, maxVal);
+        }
+        
+        // --- 4. Populate Goal Tracker ---
+        document.getElementById('goal-list-text').innerText = `${q3_goal.list_actual} / ${q3_goal.list_target}`;
+        document.getElementById('goal-list-bar').style.width = toPercentRaw(q3_goal.list_actual, q3_goal.list_target);
+        document.getElementById('goal-contact-text').innerText = `${q3_goal.contact_actual} schools contacted`;
+        document.getElementById('goal-meeting-text').innerText = `${q3_goal.meeting_actual} / ${q3_goal.meeting_target}`;
+        document.getElementById('goal-meeting-bar').style.width = toPercentRaw(q3_goal.meeting_actual, q3_goal.meeting_target);
+
+        // --- 5. Populate Event Countdown & Checklist ---
+        if (events.next) {
+          currentEventName = events.next.name;
+          document.getElementById('event-name').innerText = currentEventName;
+          
+          const eventDate = new Date(events.next.dateISO);
+          startCountdown(eventDate);
+          loadChecklist(currentEventName);
+          
+        } else {
+          document.getElementById('event-name').innerText = "No Upcoming Events";
+          document.getElementById('countdown').style.display = 'none';
+          document.getElementById('event-checklist').style.display = 'none';
+        }
+
+        // --- 6. Show the content ---
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+      }
+
+      function showError(error) {
+        const loadingDiv = document.getElementById('loading');
+        loadingDiv.innerHTML = `<div class="error-message">Error: ${error.message || 'Unknown error'}</div>`;
+        loadingDiv.style.display = 'block';
+      }
+      
+      // --- Countdown Timer Logic ---
+      function startCountdown(eventDate) {
+        if (countdownTimer) { clearInterval(countdownTimer); }
+        
+        const timer = () => {
+          const now = new Date().getTime();
+          const distance = eventDate.getTime() - now;
+          
+          if (distance < 0) {
+            clearInterval(countdownTimer);
+            document.getElementById('countdown').innerHTML = "Event in progress or just passed.";
+            return;
+          }
+          
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          
+          document.getElementById('cd-days').innerText = days;
+          document.getElementById('cd-hours').innerText = hours;
+          document.getElementById('cd-mins').innerText = minutes;
+          document.getElementById('cd-secs').innerText = seconds;
+        };
+        
+        timer();
+        countdownTimer = setInterval(timer, 1000);
+      }
+
+      // --- Checklist Logic ---
+      function loadChecklist(eventName) {
+        google.script.run
+          .withSuccessHandler(drawChecklist)
+          .withFailureHandler((err) => { 
+             document.getElementById('checklist-loading').innerHTML = `<span style="color: red;">Could not load checklist.</span>`;
+          })
+          .getChecklistStatus(eventName);
+      }
+      
+      function drawChecklist(status) {
+        const container = document.getElementById('event-checklist');
+        document.getElementById('checklist-loading').style.display = 'none';
+        
+        const items = [
+          "Email schools in the area",
+          "Look at flights and hotels",
+          "Fill out all forms and confirmed the visit"
+        ];
+        
+        items.forEach(itemText => {
+          const isChecked = status[itemText] === true;
+          
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'checklist-item';
+          
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.id = itemText;
+          checkbox.checked = isChecked;
+          checkbox.onchange = handleChecklistChange;
+          
+          const label = document.createElement('label');
+          label.htmlFor = itemText;
+          label.innerText = itemText;
+          
+          itemDiv.appendChild(checkbox);
+          itemDiv.appendChild(label);
+          container.appendChild(itemDiv);
+        });
+      }
+      
+      function handleChecklistChange(event) {
+        const itemName = event.target.id;
+        const isChecked = event.target.checked;
+        event.target.disabled = true;
+        
+        google.script.run
+          .withSuccessHandler((response) => {
+            event.target.disabled = false;
+            if (response.error) {
+              alert("Error saving checklist: " + response.error);
+              event.target.checked = !isChecked;
+            }
+          })
+          .withFailureHandler((err) => {
+             event.target.disabled = false;
+             alert("Error saving checklist: " + err.message);
+             event.target.checked = !isChecked;
+          })
+          .updateChecklistStatus(currentEventName, itemName, isChecked);
+      }
+      
+    </script>
+  </body>
+</html>
