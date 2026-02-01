@@ -1,0 +1,7 @@
+{
+  "name": "min-x7k9p2m4q8v3n1",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "installCommand": "npm install"
+}
