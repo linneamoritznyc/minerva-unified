@@ -1,37 +1,85 @@
-// School data from CRM
+// School data from CRM spreadsheet
 export interface School {
   id: string;
-  rowNumber: number;
   name: string;
-  city: string;
   country: string;
-  curriculum: 'IB' | 'American' | 'British' | 'French' | 'German' | 'Other' | string;
-  counselorName: string | null;
-  counselorEmail: string | null;
-  counselorPhone: string | null;
-  generalEmail: string | null;
-  generalPhone: string | null;
-  relationshipStatus: 'Not Contacted' | 'Contacted' | 'Responded' | 'Partnership' | 'Not Interested' | string;
-  lastContactType: 'Email' | 'Phone' | 'Meeting' | 'Fair' | null;
-  lastContactDate: string | null;
-  notes: string | null;
-  priorityTier: 'A' | 'B' | 'C' | null;
+  countryCode: string;
+  city: string;
+  address: string;
+  priority: string;
+  website: string;
+  phone: string;
+  email: string;
+  ibStatus: string;
+  curriculum: string;
+  studentCount: string;
+  socioeconomicContext: string;
+  tuitionFees: string;
+  specialFocus: string;
+  contactName: string;
+  contactTitle: string;
+  contactEmail: string;
+  relationshipStatus: string;
+  lastContactType: string;
+  lastContactDate: string;
+  repliedStatus: string;
+  activityNotes: string;
+  emailStrength: string;
+  mergeStatus: string;
+  nextStep: string;
 }
 
-// Event/Fair data
-export interface Event {
-  id: string;
+// CRM Contact (from CONTACT Master tab)
+export interface CRMContact {
+  type: string;
   name: string;
-  type: 'fair' | 'school_visit' | 'workshop' | 'coffee_chat' | 'trip';
+  title: string;
+  school: string;
+  location: string;
+  email: string;
+  phone: string;
+  relationshipStatus: string;
+  lastEmailReceived: string;
+  notes: string;
+  lastContactDate: string;
+}
+
+// Confirmed event from CRM
+export interface ConfirmedEvent {
+  name: string;
   date: string;
-  endDate?: string;
-  city: string;
+  personalNotes: string;
+  time: string;
+  address: string;
   country: string;
-  venue?: string;
-  cost?: number;
-  registered: boolean;
-  travelBooked: boolean;
-  notes?: string;
+  city: string;
+  organizerNotes: string;
+  presentation: string;
+  fairMaterials: string;
+  flightsHotels: string;
+  latestUpdate: string;
+  hotel1: string;
+  hotel2: string;
+  hotel3: string;
+  hotel4: string;
+  mainPoints: string;
+  type: 'confirmed';
+}
+
+// Fair from European University Fairs FY26
+export interface Fair {
+  date: string;
+  duration: string;
+  country: string;
+  city: string;
+  name: string;
+  organization: string;
+  venue: string;
+  cost: string;
+  registrationDeadline: string;
+  website: string;
+  details: string;
+  type: 'fair';
 }
 
 // Call list item with generated script
@@ -39,74 +87,49 @@ export interface CallListItem {
   school: School;
   priority: number;
   priorityReason: string;
-  relatedEvent?: Event;
+  relatedEvent?: { name: string; date: string; city: string; country: string };
   script: string;
   talkingPoints: string[];
-  contactHistory: ContactHistoryItem[];
   bestTimeToCall?: string;
   timezone?: string;
 }
 
-// Contact history entry
-export interface ContactHistoryItem {
-  date: string;
-  type: 'Email' | 'Phone' | 'Meeting' | 'Fair' | 'Visit';
-  summary: string;
-  outcome?: string;
-}
-
-// Travel option
-export interface TravelOption {
-  type: 'flight' | 'hotel';
-  provider: string;
-  price: number;
-  currency: string;
-  departureTime?: string;
-  arrivalTime?: string;
-  duration?: string;
-  checkIn?: string;
-  checkOut?: string;
-  rating?: number;
-  distanceToVenue?: string;
-  bookingUrl?: string;
-  recommended: boolean;
-  reason?: string;
-}
-
-// Trip plan
-export interface TripPlan {
-  event: Event;
-  flights: TravelOption[];
-  hotels: TravelOption[];
-  schoolVisits: {
-    school: School;
-    date: string;
-    time: string;
-    confirmed: boolean;
-  }[];
-  totalEstimatedCost: number;
-  recommendation: string;
-}
-
 // Timeline item for event preparation
 export interface TimelineItem {
-  id: string;
-  eventId: string;
   task: string;
-  dueDate: string;
   status: 'completed' | 'in_progress' | 'pending' | 'waiting';
-  dependsOn?: string[];
-  notes?: string;
+}
+
+// Event with timeline (for display)
+export interface EventWithTimeline {
+  id: string;
+  name: string;
+  date: string;
+  endDate?: string;
+  city: string;
+  country: string;
+  venue?: string;
+  type: 'confirmed' | 'fair';
+  registered: boolean;
+  travelBooked: boolean;
+  schoolsInArea: number;
+  schoolsContacted: number;
+  daysUntil: number;
+  timeline: TimelineItem[];
+  personalNotes?: string;
+  flightsHotels?: string;
+  hotels?: string[];
 }
 
 // Dashboard stats
 export interface DashboardStats {
+  totalSchools: number;
   schoolsContacted: number;
-  schoolsThisWeek: number;
+  schoolsResponded: number;
+  schoolsVisited: number;
+  schoolsNotContacted: number;
   upcomingEvents: number;
-  confirmedVisits: number;
-  pendingResponses: number;
-  streak: number;
+  countriesCovered: number;
 }
 
 // Encouragement message
@@ -123,34 +146,14 @@ export interface TaskCompletion {
   celebration: EncouragementMessage;
 }
 
-// AI Manager response
-export interface AIManagerResponse {
-  priority: 'high' | 'medium' | 'low';
-  message: string;
-  suggestedAction: string;
-  callList?: CallListItem[];
-  travelSuggestions?: TripPlan;
-  timeline?: TimelineItem[];
-}
-
 // Store state
 export interface AppState {
-  // Data
-  schools: School[];
-  events: Event[];
-  callList: CallListItem[];
   completedTasks: TaskCompletion[];
-
-  // UI state
   isLoading: boolean;
   error: string | null;
   showConfetti: boolean;
   currentTab: 'dashboard' | 'calls' | 'events' | 'travel';
 
-  // Actions
-  setSchools: (schools: School[]) => void;
-  setEvents: (events: Event[]) => void;
-  setCallList: (callList: CallListItem[]) => void;
   addCompletedTask: (task: TaskCompletion) => void;
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;

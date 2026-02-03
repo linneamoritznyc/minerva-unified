@@ -1,30 +1,19 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { AppState, School, Event, CallListItem, TaskCompletion } from '@/types';
+import type { AppState, TaskCompletion } from '@/types';
 
 export const useAppStore = create<AppState>()(
   persist(
     (set) => ({
-      // Data
-      schools: [],
-      events: [],
-      callList: [],
       completedTasks: [],
-
-      // UI state
       isLoading: false,
       error: null,
       showConfetti: false,
       currentTab: 'dashboard',
 
-      // Actions
-      setSchools: (schools: School[]) => set({ schools }),
-      setEvents: (events: Event[]) => set({ events }),
-      setCallList: (callList: CallListItem[]) => set({ callList }),
-
       addCompletedTask: (task: TaskCompletion) =>
         set((state) => ({
-          completedTasks: [task, ...state.completedTasks].slice(0, 50), // Keep last 50
+          completedTasks: [task, ...state.completedTasks].slice(0, 50),
           showConfetti: true,
         })),
 
@@ -48,7 +37,6 @@ export const useAppStore = create<AppState>()(
   )
 );
 
-// Encouragement messages for celebrations
 export const encouragementMessages = [
   { text: "Amazing work!", emoji: "✨" },
   { text: "You're crushing it!", emoji: "💪" },

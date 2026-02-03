@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useAppStore, getRandomEncouragement } from '@/lib/store';
+import { getCallList, getUpcomingEvents } from '@/lib/data';
 import {
   Phone,
   MapPin,
@@ -13,151 +14,11 @@ import {
   Calendar,
   Building2,
   MessageSquare,
-  Sparkles
+  Sparkles,
+  Search,
+  Filter,
 } from 'lucide-react';
 import type { CallListItem, TaskCompletion } from '@/types';
-
-// Mock data for call list
-const mockCallList: CallListItem[] = [
-  {
-    school: {
-      id: '1',
-      rowNumber: 5,
-      name: 'International School of Paris',
-      city: 'Paris',
-      country: 'France',
-      curriculum: 'IB',
-      counselorName: 'Marie Dubois',
-      counselorEmail: 'mdubois@isparis.edu',
-      counselorPhone: '+33 1 42 24 09 54',
-      generalEmail: 'admissions@isparis.edu',
-      generalPhone: '+33 1 42 24 09 50',
-      relationshipStatus: 'Contacted',
-      lastContactType: 'Email',
-      lastContactDate: '2025-09-15',
-      notes: 'Strong IB program, sends 2-3 students to US universities annually',
-      priorityTier: 'A',
-    },
-    priority: 1,
-    priorityReason: 'Near your Paris trip (Feb 10-12), previously contacted via email',
-    relatedEvent: {
-      id: 'ev1',
-      name: 'Paris CIS Education Fair',
-      type: 'fair',
-      date: '2026-02-10',
-      city: 'Paris',
-      country: 'France',
-      registered: true,
-      travelBooked: false,
-    },
-    script: `Hi Marie, this is Linnea from Minerva University. I actually reached out via email back in September - I know you're probably swamped, so thought I'd try calling directly. I'll be in Paris on February 10-12 for the CIS Education Fair and wanted to see if I could visit your school while I'm in the area. Would you have 15 minutes for me to meet with your IB students interested in US universities?`,
-    talkingPoints: [
-      'Mention the CIS Fair on Feb 10-12',
-      'Reference previous email from September',
-      'IB students are great fit for Minerva\'s interdisciplinary approach',
-      'Offer to send more info via email after the call',
-    ],
-    contactHistory: [
-      {
-        date: '2025-09-15',
-        type: 'Email',
-        summary: 'Initial outreach email sent, no response',
-      },
-    ],
-    bestTimeToCall: '10:00 - 12:00',
-    timezone: 'CET (Paris)',
-  },
-  {
-    school: {
-      id: '2',
-      rowNumber: 12,
-      name: 'Lycée International de Saint-Germain-en-Laye',
-      city: 'Saint-Germain-en-Laye',
-      country: 'France',
-      curriculum: 'French/IB',
-      counselorName: 'Jean-Pierre Martin',
-      counselorEmail: 'jpmartin@licsgl.fr',
-      counselorPhone: '+33 1 39 10 94 11',
-      generalEmail: 'contact@licsgl.fr',
-      generalPhone: '+33 1 39 10 94 00',
-      relationshipStatus: 'Not Contacted',
-      lastContactType: null,
-      lastContactDate: null,
-      notes: 'Large international sections, 30km from Paris',
-      priorityTier: 'A',
-    },
-    priority: 2,
-    priorityReason: '30km from Paris, never contacted before',
-    relatedEvent: {
-      id: 'ev1',
-      name: 'Paris CIS Education Fair',
-      type: 'fair',
-      date: '2026-02-10',
-      city: 'Paris',
-      country: 'France',
-      registered: true,
-      travelBooked: false,
-    },
-    script: `Hi Jean-Pierre, this is Linnea Moritz from Minerva University. I'm calling because I'll be in Paris on February 10-12 for the CIS Education Fair, and I noticed your school is just 30 kilometers away. I'd love to visit and tell your international section students about Minerva - we're a US-accredited university where students live in 7 global cities over 4 years. Would you have 20 minutes for me to visit while I'm in the area?`,
-    talkingPoints: [
-      'First contact - introduce Minerva clearly',
-      'Emphasize global rotation (7 cities)',
-      'Their international sections would be a great fit',
-      'Offer flexible timing during Feb 10-12',
-    ],
-    contactHistory: [],
-    bestTimeToCall: '14:00 - 16:00',
-    timezone: 'CET (Paris)',
-  },
-  {
-    school: {
-      id: '3',
-      rowNumber: 18,
-      name: 'British School of Paris',
-      city: 'Paris',
-      country: 'France',
-      curriculum: 'British',
-      counselorName: 'Sarah Thompson',
-      counselorEmail: 'sthompson@britishschool.fr',
-      counselorPhone: '+33 1 34 80 45 90',
-      generalEmail: 'info@britishschool.fr',
-      generalPhone: '+33 1 34 80 45 00',
-      relationshipStatus: 'Responded',
-      lastContactType: 'Fair',
-      lastContactDate: '2025-11-20',
-      notes: 'Met Sarah at London Fair 2025, very interested in Minerva',
-      priorityTier: 'A',
-    },
-    priority: 3,
-    priorityReason: 'Warm lead - met at London Fair, showed interest',
-    relatedEvent: {
-      id: 'ev1',
-      name: 'Paris CIS Education Fair',
-      type: 'fair',
-      date: '2026-02-10',
-      city: 'Paris',
-      country: 'France',
-      registered: true,
-      travelBooked: false,
-    },
-    script: `Hi Sarah! It's Linnea from Minerva University - we met at the London University Fair back in November. You mentioned you'd be interested in having me visit your school sometime. Well, I'll be in Paris on February 10-12 for the CIS Fair, and I thought this would be perfect timing! Would you be available for me to come by and do a session with your A-Level students?`,
-    talkingPoints: [
-      'Reference meeting at London Fair (November 2025)',
-      'She expressed interest - this is a warm call',
-      'A-Level students are strong candidates',
-      'Could do a workshop or info session',
-    ],
-    contactHistory: [
-      {
-        date: '2025-11-20',
-        type: 'Fair',
-        summary: 'Met at London University Fair, exchanged contacts, she showed interest in a school visit',
-      },
-    ],
-    bestTimeToCall: '09:00 - 11:00',
-    timezone: 'CET (Paris)',
-  },
-];
 
 interface CallCardProps {
   item: CallListItem;
@@ -177,6 +38,7 @@ function CallCard({ item, onComplete }: CallCardProps) {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Responded':
+      case 'Visited':
         return 'bg-success-100 text-success-700';
       case 'Contacted':
         return 'bg-warm-100 text-warm-700';
@@ -186,6 +48,9 @@ function CallCard({ item, onComplete }: CallCardProps) {
         return 'bg-slate-100 text-slate-600';
     }
   };
+
+  const phoneNumber = item.school.phone || item.school.email;
+  const contactDisplay = item.school.contactName || item.school.contactTitle || 'School office';
 
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden card-hover">
@@ -201,9 +66,13 @@ function CallCard({ item, onComplete }: CallCardProps) {
               <div className="flex items-center gap-2 mt-1 text-sm text-slate-500">
                 <MapPin className="w-4 h-4" />
                 <span>{item.school.city}, {item.school.country}</span>
-                <span className="mx-1">•</span>
-                <Building2 className="w-4 h-4" />
-                <span>{item.school.curriculum}</span>
+                {item.school.curriculum && (
+                  <>
+                    <span className="mx-1">·</span>
+                    <Building2 className="w-4 h-4" />
+                    <span>{item.school.curriculum}</span>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -215,21 +84,26 @@ function CallCard({ item, onComplete }: CallCardProps) {
         {/* Contact Info */}
         <div className="flex flex-wrap items-center gap-4 mb-4">
           <div className="flex items-center gap-2 text-slate-700">
-            <span className="font-medium">{item.school.counselorName}</span>
+            <span className="font-medium">{contactDisplay}</span>
           </div>
-          {item.school.counselorPhone && (
+          {item.school.phone && (
             <a
-              href={`tel:${item.school.counselorPhone}`}
+              href={`tel:${item.school.phone}`}
               className="flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium"
             >
               <Phone className="w-4 h-4" />
-              {item.school.counselorPhone}
+              {item.school.phone}
             </a>
           )}
-          <div className="flex items-center gap-2 text-slate-500 text-sm">
-            <Clock className="w-4 h-4" />
-            Best time: {item.bestTimeToCall} ({item.timezone})
-          </div>
+          {!item.school.phone && item.school.email && (
+            <span className="text-sm text-slate-500">{item.school.email}</span>
+          )}
+          {item.bestTimeToCall && (
+            <div className="flex items-center gap-2 text-slate-500 text-sm">
+              <Clock className="w-4 h-4" />
+              Best time: {item.bestTimeToCall} ({item.timezone})
+            </div>
+          )}
         </div>
 
         {/* Priority Reason */}
@@ -245,7 +119,9 @@ function CallCard({ item, onComplete }: CallCardProps) {
             <Calendar className="w-4 h-4 text-warm-500" />
             <span className="text-sm text-slate-600">
               Related to: <span className="font-medium">{item.relatedEvent.name}</span>
-              ({new Date(item.relatedEvent.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })})
+              {item.relatedEvent.date && (
+                <> ({item.relatedEvent.date})</>
+              )}
             </span>
           </div>
         )}
@@ -272,24 +148,22 @@ function CallCard({ item, onComplete }: CallCardProps) {
       {/* Expanded Content */}
       {expanded && (
         <div className="border-t border-slate-100 p-5 bg-slate-50">
-          {/* Contact History */}
-          {item.contactHistory.length > 0 && (
+          {/* Previous Contact Info */}
+          {item.school.lastContactDate && (
             <div className="mb-5">
               <h4 className="text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
                 <MessageSquare className="w-4 h-4" />
                 Previous Contact
               </h4>
-              <div className="space-y-2">
-                {item.contactHistory.map((history, idx) => (
-                  <div key={idx} className="bg-white rounded-lg p-3 text-sm">
-                    <div className="flex items-center gap-2 text-slate-500 mb-1">
-                      <span className="font-medium">{history.type}</span>
-                      <span>•</span>
-                      <span>{new Date(history.date).toLocaleDateString()}</span>
-                    </div>
-                    <p className="text-slate-700">{history.summary}</p>
-                  </div>
-                ))}
+              <div className="bg-white rounded-lg p-3 text-sm">
+                <div className="flex items-center gap-2 text-slate-500 mb-1">
+                  <span className="font-medium">{item.school.lastContactType || 'Outreach'}</span>
+                  <span>·</span>
+                  <span>{item.school.lastContactDate}</span>
+                </div>
+                {item.school.activityNotes && (
+                  <p className="text-slate-700">{item.school.activityNotes}</p>
+                )}
               </div>
             </div>
           )}
@@ -330,7 +204,7 @@ function CallCard({ item, onComplete }: CallCardProps) {
             <ul className="space-y-2">
               {item.talkingPoints.map((point, idx) => (
                 <li key={idx} className="flex items-start gap-2 text-sm text-slate-600">
-                  <span className="text-primary-500 mt-0.5">•</span>
+                  <span className="text-primary-500 mt-0.5">·</span>
                   {point}
                 </li>
               ))}
@@ -354,6 +228,35 @@ function CallCard({ item, onComplete }: CallCardProps) {
 
 export function CallList() {
   const { addCompletedTask, triggerConfetti } = useAppStore();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filterCountry, setFilterCountry] = useState('all');
+
+  const allCallItems = useMemo(() => getCallList(), []);
+  const upcomingEvents = useMemo(() => getUpcomingEvents().filter(e => e.daysUntil > 0), []);
+  const nextEvent = upcomingEvents[0];
+
+  // Get unique countries from call list
+  const countries = useMemo(() => {
+    const set = new Set(allCallItems.map(i => i.school.country));
+    return Array.from(set).sort();
+  }, [allCallItems]);
+
+  // Filter call items
+  const callItems = useMemo(() => {
+    return allCallItems.filter(item => {
+      if (filterCountry !== 'all' && item.school.country !== filterCountry) return false;
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        return (
+          item.school.name.toLowerCase().includes(q) ||
+          item.school.city.toLowerCase().includes(q) ||
+          item.school.country.toLowerCase().includes(q) ||
+          (item.school.contactName && item.school.contactName.toLowerCase().includes(q))
+        );
+      }
+      return true;
+    });
+  }, [allCallItems, filterCountry, searchQuery]);
 
   const handleComplete = (item: CallListItem) => {
     const encouragement = getRandomEncouragement();
@@ -377,35 +280,82 @@ export function CallList() {
           </div>
           <div>
             <h2 className="text-2xl font-bold text-slate-900">Call List</h2>
-            <p className="text-slate-600">Schools to call before your Paris trip</p>
+            <p className="text-slate-600">
+              {allCallItems.length} schools prioritized by upcoming events
+            </p>
           </div>
         </div>
       </div>
 
       {/* Event Context */}
-      <div className="bg-gradient-to-r from-warm-50 to-warm-100 rounded-2xl p-5 mb-6 border border-warm-200">
-        <div className="flex items-center gap-3">
-          <Calendar className="w-6 h-6 text-warm-600" />
-          <div>
-            <p className="font-semibold text-warm-800">Paris CIS Education Fair</p>
-            <p className="text-sm text-warm-600">February 10-12, 2026 • 9 days away</p>
+      {nextEvent && (
+        <div className="bg-gradient-to-r from-warm-50 to-warm-100 rounded-2xl p-5 mb-6 border border-warm-200">
+          <div className="flex items-center gap-3">
+            <Calendar className="w-6 h-6 text-warm-600" />
+            <div>
+              <p className="font-semibold text-warm-800">{nextEvent.name}</p>
+              <p className="text-sm text-warm-600">
+                {nextEvent.date} · {nextEvent.city}, {nextEvent.country} · {nextEvent.daysUntil} days away
+              </p>
+            </div>
           </div>
+          <p className="mt-3 text-sm text-warm-700">
+            Schools in {nextEvent.country} are prioritized first. Calling now gives you the
+            best chance to book school visits during your trip!
+          </p>
         </div>
-        <p className="mt-3 text-sm text-warm-700">
-          I&apos;ve prioritized these 8 schools within 50km of Paris. Calling now gives you the
-          best chance to book school visits during your trip!
-        </p>
+      )}
+
+      {/* Search & Filter */}
+      <div className="flex gap-3 mb-6">
+        <div className="flex-1 relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <input
+            type="text"
+            placeholder="Search schools..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-200 text-sm
+                     focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-primary-300"
+          />
+        </div>
+        <div className="relative">
+          <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <select
+            value={filterCountry}
+            onChange={(e) => setFilterCountry(e.target.value)}
+            className="pl-10 pr-8 py-2 rounded-xl border border-slate-200 text-sm appearance-none
+                     focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-primary-300 bg-white"
+          >
+            <option value="all">All countries</option>
+            {countries.map(c => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+        </div>
       </div>
 
       {/* Call List */}
       <div className="space-y-4">
-        {mockCallList.map((item) => (
-          <CallCard
-            key={item.school.id}
-            item={item}
-            onComplete={() => handleComplete(item)}
-          />
-        ))}
+        {callItems.length === 0 ? (
+          <div className="text-center py-12 text-slate-500">
+            <Phone className="w-12 h-12 mx-auto mb-3 text-slate-300" />
+            <p>No schools match your current filters.</p>
+          </div>
+        ) : (
+          callItems.slice(0, 20).map((item) => (
+            <CallCard
+              key={item.school.id}
+              item={item}
+              onComplete={() => handleComplete(item)}
+            />
+          ))
+        )}
+        {callItems.length > 20 && (
+          <p className="text-center text-sm text-slate-500 py-4">
+            Showing 20 of {callItems.length} schools. Use search or country filter to find specific schools.
+          </p>
+        )}
       </div>
 
       {/* Encouragement Footer */}
