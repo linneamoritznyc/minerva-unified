@@ -1,6 +1,5 @@
-import type { Config } from "tailwindcss";
-
-export default {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,7 +8,6 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Calm, ADHD-friendly color palette
         primary: {
           50: '#f0f9ff',
           100: '#e0f2fe',
@@ -50,9 +48,8 @@ export default {
       animation: {
         'bounce-slow': 'bounce 2s infinite',
         'pulse-slow': 'pulse 3s infinite',
-        'confetti': 'confetti 0.5s ease-out',
       },
     },
   },
   plugins: [],
-} satisfies Config;
+};
