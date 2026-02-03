@@ -1,0 +1,261 @@
+[
+  {
+    "name": "OeAD",
+    "type": "Austria",
+    "country": "Austria's main agency for education and internationalisation. Manages exchange programs.",
+    "website": "Free Outreach & Paid Events",
+    "details": "https://oead.at/en/"
+  },
+  {
+    "name": "Study in Austria",
+    "type": "Austria",
+    "country": "The official national portal for international students, run by OeAD.",
+    "website": "Free Information Resource",
+    "details": "https://www.studyinaustria.at/"
+  },
+  {
+    "name": "AEF-Europe",
+    "type": "Belgium (French Community)",
+    "country": "The Erasmus+ agency for French-speaking Belgium, facilitating mobility.",
+    "website": "Free Outreach (Program-based)",
+    "details": "https://www.aef-europe.be/"
+  },
+  {
+    "name": "EPOS",
+    "type": "Belgium (Flemish Community)",
+    "country": "The Erasmus+ agency for the Flemish Community, facilitating mobility.",
+    "website": "Free Outreach (Program-based)",
+    "details": "https://www.epos-vlaanderen.be/"
+  },
+  {
+    "name": "Study in Flanders",
+    "type": "Belgium (Flanders)",
+    "country": "Official portal for promoting higher education in Flanders.",
+    "website": "Free Information Resource",
+    "details": "https://www.studyinflanders.be/"
+  },
+  {
+    "name": "Ministry of Higher Education & Science",
+    "type": "Denmark",
+    "country": "Official government body. Runs the \"Study in Denmark\" portal.",
+    "website": "Free Outreach",
+    "details": "https://ufm.dk/en"
+  },
+  {
+    "name": "Study in Denmark",
+    "type": "Denmark",
+    "country": "The official national portal for international students.",
+    "website": "Free Information Resource",
+    "details": "https://studyindenmark.dk/"
+  },
+  {
+    "name": "EDUFI",
+    "type": "Finland",
+    "country": "Finnish National Agency for Education; manages \"Study in Finland\".",
+    "website": "Free Outreach & Paid Campaigns",
+    "details": "https://www.oph.fi/en"
+  },
+  {
+    "name": "Study in Finland",
+    "type": "Finland",
+    "country": "The official national portal for international students.",
+    "website": "Free Information Resource",
+    "details": "https://www.studyinfinland.fi/"
+  },
+  {
+    "name": "Campus France",
+    "type": "France",
+    "country": "Official government agency for promoting French higher education.",
+    "website": "Membership-Based & Event Fees",
+    "details": "https://www.campusfrance.org/en"
+  },
+  {
+    "name": "L'Etudiant",
+    "type": "France",
+    "country": "A major private media company with hugely popular fairs and student resources.",
+    "website": "Paid Advertising & Fair Fees",
+    "details": "https://www.letudiant.fr/"
+  },
+  {
+    "name": "DAAD",
+    "type": "Germany",
+    "country": "German Academic Exchange Service; the primary promotional body.",
+    "website": "Free & Paid Services",
+    "details": "https://www.daad.de/en/"
+  },
+  {
+    "name": "Study in Germany",
+    "type": "Germany",
+    "country": "The official national portal for international students, run by DAAD.",
+    "website": "Free Information Resource",
+    "details": "https://www.study-in-germany.de/en/"
+  },
+  {
+    "name": "KMK (Kultusministerkonferenz)",
+    "type": "Germany",
+    "country": "The Standing Conference of the Ministers of Education and Cultural Affairs of the Länder.",
+    "website": "Free Outreach (Policy-level)",
+    "details": "https://www.kmk.org/"
+  },
+  {
+    "name": "Rannís",
+    "type": "Iceland",
+    "country": "The Icelandic Centre for Research; manages Erasmus+ and \"Study in Iceland\".",
+    "website": "Free Outreach",
+    "details": "https://en.rannis.is/"
+  },
+  {
+    "name": "Study in Iceland",
+    "type": "Iceland",
+    "country": "The official national portal for international students.",
+    "website": "Free Information Resource",
+    "details": "https://www.studyiniceland.is/"
+  },
+  {
+    "name": "Education in Ireland",
+    "type": "Ireland (Republic)",
+    "country": "The national brand promoting Irish Higher Education Institutions.",
+    "website": "Partnership & Event Fees",
+    "details": "https://www.educationinireland.com/"
+  },
+  {
+    "name": "HEA (Higher Education Authority)",
+    "type": "Ireland (Republic)",
+    "country": "The statutory policy-advisory body for higher education.",
+    "website": "Free Outreach (Policy-level)",
+    "details": "https://hea.ie/"
+  },
+  {
+    "name": "Uni-Italia",
+    "type": "Italy",
+    "country": "Official association for promoting Italian higher education abroad.",
+    "website": "Membership & Service Fees",
+    "details": "https://www.uni-italia.net/"
+  },
+  {
+    "name": "Ministero dell'Università e della Ricerca",
+    "type": "Italy",
+    "country": "The government ministry for University and Research.",
+    "website": "Free Outreach",
+    "details": "https://www.mur.gov.it/it"
+  },
+  {
+    "name": "MESR",
+    "type": "Luxembourg",
+    "country": "Ministry of Higher Education and Research.",
+    "website": "Free Outreach",
+    "details": "https://mesr.gouvernement.lu/en.html"
+  },
+  {
+    "name": "anefore",
+    "type": "Luxembourg",
+    "country": "The national agency for the Erasmus+ programme in Luxembourg.",
+    "website": "Free Outreach (Program-based)",
+    "details": "https://www.anefore.lu/"
+  },
+  {
+    "name": "Ministry for Education",
+    "type": "Malta",
+    "country": "The government ministry overseeing education and promotion.",
+    "website": "Free Outreach & Event Sponsorship",
+    "details": "https://education.gov.mt/"
+  },
+  {
+    "name": "Nuffic",
+    "type": "Netherlands",
+    "country": "The Dutch organization for internationalization in education.",
+    "website": "Free & Paid Services",
+    "details": "https://www.nuffic.nl/en"
+  },
+  {
+    "name": "Study in Holland",
+    "type": "Netherlands",
+    "country": "The official national portal for international students.",
+    "website": "Free Information Resource",
+    "details": "https://www.studyinholland.nl/"
+  },
+  {
+    "name": "HK-dir",
+    "type": "Norway",
+    "country": "Directorate for Higher Education and Skills; runs \"Study in Norway\".",
+    "website": "Free Outreach",
+    "details": "https://hkdir.no/en/"
+  },
+  {
+    "name": "Study in Norway",
+    "type": "Norway",
+    "country": "The official national portal for international students.",
+    "website": "Free Information Resource",
+    "details": "https://www.studyinnorway.no/"
+  },
+  {
+    "name": "DGES",
+    "type": "Portugal",
+    "country": "Directorate-General for Higher Education; runs \"Study & Research in Portugal\".",
+    "website": "Free Outreach",
+    "details": "https://www.dges.gov.pt/en"
+  },
+  {
+    "name": "Study & Research in Portugal",
+    "type": "Portugal",
+    "country": "The official national portal for international students.",
+    "website": "Free Information Resource",
+    "details": "https://www.study-research.pt/"
+  },
+  {
+    "name": "SEPIE",
+    "type": "Spain",
+    "country": "Spanish Service for the Internationalization of Education.",
+    "website": "Free Outreach & Paid Events",
+    "details": "https://www.sepie.es/"
+  },
+  {
+    "name": "Study in Spain",
+    "type": "Spain",
+    "country": "The official national portal for international students.",
+    "website": "Free Information Resource",
+    "details": "https://www.studyinspain.info/"
+  },
+  {
+    "name": "UHR",
+    "type": "Sweden",
+    "country": "Swedish Council for Higher Education; runs \"Study in Sweden\".",
+    "website": "Free Outreach",
+    "details": "https://www.uhr.se/en/"
+  },
+  {
+    "name": "Study in Sweden",
+    "type": "Sweden",
+    "country": "The official national portal for international students.",
+    "website": "Free Information Resource",
+    "details": "https://studyinsweden.se/"
+  },
+  {
+    "name": "swissuniversities",
+    "type": "Switzerland",
+    "country": "The rectors' conference of the Swiss universities.",
+    "website": "Free Outreach",
+    "details": "https://www.swissuniversities.ch/en/"
+  },
+  {
+    "name": "Movetia",
+    "type": "Switzerland",
+    "country": "Swiss agency for exchange and mobility.",
+    "website": "Free Outreach (Program-based)",
+    "details": "https://www.movetia.ch/en"
+  },
+  {
+    "name": "British Council",
+    "type": "United Kingdom",
+    "country": "The UK's international organization for cultural and educational opportunities.",
+    "website": "Paid Services",
+    "details": "https://www.britishcouncil.org/"
+  },
+  {
+    "name": "UCAS",
+    "type": "United Kingdom",
+    "country": "The Universities and Colleges Admissions Service is the central application portal.",
+    "website": "Partnership & Event Fees",
+    "details": "https://www.ucas.com/"
+  }
+]
