@@ -2,7 +2,7 @@
   "confirmed": [
     {
       "name": "NSAC",
-      "date": "2025-09-20",
+      "date": "2026-09-20",
       "personalNotes": "I need to sleep there. Is there a train going back to Nässjö in the evening?  I checked, there are no trains back in the evening. Cause the train leaves 6 minutes after the event ends. There is a train to Växjö at 21.00. But dad doesn't wanna pick me up in the middle of the night. So stay in copenhagen 2 nights. ",
       "time": "8:00 AM - 7:00 PM",
       "address": "Klub, Linnésgade 25, 1361 Copenhagen",
@@ -22,7 +22,7 @@
     },
     {
       "name": "Education USA Madrid",
-      "date": "2025-09-30",
+      "date": "2026-09-30",
       "personalNotes": "",
       "time": "",
       "address": "",
@@ -42,7 +42,7 @@
     },
     {
       "name": "College/Career Fair",
-      "date": "2025-10-15",
+      "date": "2026-10-15",
       "personalNotes": "",
       "time": "5:30-7 PM",
       "address": "Vilseck High School MPR",
@@ -62,7 +62,7 @@
     },
     {
       "name": "USA College Day",
-      "date": "September 26-27, 2025",
+      "date": "September 26-27, 2026",
       "personalNotes": "",
       "time": "Fri: 2:45pm-7pm, Sat: 9:15am-4pm",
       "address": "Kensington Town Hall",
@@ -82,7 +82,7 @@
     },
     {
       "name": "Framtidsmässan",
-      "date": "2026-01-30",
+      "date": "2026-03-30",
       "personalNotes": "",
       "time": "",
       "address": "Malmömässan",
@@ -102,7 +102,7 @@
     },
     {
       "name": "Brussels College Night",
-      "date": "2025-09-30",
+      "date": "2026-09-30",
       "personalNotes": "",
       "time": "6-8 PM",
       "address": "International School of Brussels",
@@ -122,7 +122,7 @@
     },
     {
       "name": "Netherlands College Night",
-      "date": "2025-11-01",
+      "date": "2026-11-01",
       "personalNotes": "",
       "time": "5:00 - 8:30 PM",
       "address": "Jaarbeursplein 6, 3521 AL Utrecht",
@@ -143,7 +143,7 @@
   ],
   "fairs": [
     {
-      "date": "Sep 16–19, 2025",
+      "date": "Sep 16–19, 2026",
       "duration": "Sep 10-11, 08:30-18:00, Sep 12, 08:30-12:00",
       "country": "Sweden",
       "city": "Gothenburg",
@@ -157,7 +157,7 @@
       "type": "fair"
     },
     {
-      "date": "2025-09-20",
+      "date": "2026-09-20",
       "duration": "",
       "country": "Denmark",
       "city": "Copenhagen",
@@ -171,7 +171,7 @@
       "type": "fair"
     },
     {
-      "date": "Sep 24–26, 2025",
+      "date": "Sep 24–26, 2026",
       "duration": "09:00 - 13:30 BST",
       "country": "Ireland (Republic)",
       "city": "Dublin",
@@ -185,7 +185,7 @@
       "type": "fair"
     },
     {
-      "date": "Sep 26–27, 2025",
+      "date": "Sep 26–27, 2026",
       "duration": "Sep 26, 16:00-19:00, Sep 27, 10:00-15:00 GMT+1",
       "country": "United Kingdom",
       "city": "London",
@@ -199,7 +199,7 @@
       "type": "fair"
     },
     {
-      "date": "Sep 26–27, 2025",
+      "date": "Sep 26–27, 2026",
       "duration": "TBD",
       "country": "Liechtenstein",
       "city": "Schaan",
@@ -213,7 +213,7 @@
       "type": "fair"
     },
     {
-      "date": "2025-09-28",
+      "date": "2026-09-28",
       "duration": "13:30 - 16:30 CEST",
       "country": "France",
       "city": "Paris",
@@ -227,7 +227,7 @@
       "type": "fair"
     },
     {
-      "date": "2025-09-29",
+      "date": "2026-09-29",
       "duration": "14:00 - 19:00 CEST",
       "country": "Switzerland",
       "city": "Geneva",
@@ -241,7 +241,7 @@
       "type": "fair"
     },
     {
-      "date": "2025-09-30",
+      "date": "2026-09-30",
       "duration": "14:30 - 19:00 CEST",
       "country": "Switzerland",
       "city": "Zurich",
@@ -255,7 +255,7 @@
       "type": "fair"
     },
     {
-      "date": "Sep 30–Oct 2, 2025",
+      "date": "Sep 30–Oct 2, 2026",
       "duration": "TBD",
       "country": "Germany / Belgium",
       "city": "Multiple cities",
@@ -269,7 +269,7 @@
       "type": "fair"
     },
     {
-      "date": "Oct 10–11, 2025",
+      "date": "Oct 10–11, 2026",
       "duration": "TBD",
       "country": "Netherlands",
       "city": "s-Hertogenbosch",
@@ -283,7 +283,7 @@
       "type": "fair"
     },
     {
-      "date": "2025-10-15",
+      "date": "2026-10-15",
       "duration": "5:30-7PM",
       "country": "Germany",
       "city": "Vilseck",
@@ -297,7 +297,7 @@
       "type": "fair"
     },
     {
-      "date": "2025-10-16",
+      "date": "2026-10-16",
       "duration": "TBD",
       "country": "Austria",
       "city": "Vienna",
@@ -311,7 +311,7 @@
       "type": "fair"
     },
     {
-      "date": "Oct 25-26, 2025",
+      "date": "Oct 25-26, 2026",
       "duration": "TBD",
       "country": "Portugal",
       "city": "Lisbon and Porto",
@@ -325,7 +325,7 @@
       "type": "fair"
     },
     {
-      "date": "Oct 30–31, 2025",
+      "date": "Oct 30–31, 2026",
       "duration": "09:00-17:00",
       "country": "Luxembourg",
       "city": "Belval",
@@ -339,7 +339,7 @@
       "type": "fair"
     },
     {
-      "date": "Nov 6–9, 2025",
+      "date": "Nov 6–9, 2026",
       "duration": "TBD",
       "country": "Switzerland",
       "city": "Luzern",
@@ -353,7 +353,7 @@
       "type": "fair"
     },
     {
-      "date": "Nov 7–8, 2025",
+      "date": "Nov 7–8, 2026",
       "duration": "TBD",
       "country": "Netherlands",
       "city": "Zwolle",
@@ -367,7 +367,7 @@
       "type": "fair"
     },
     {
-      "date": "2025-11-08",
+      "date": "2026-11-08",
       "duration": "TBD",
       "country": "Germany",
       "city": "Cologne",
@@ -381,7 +381,7 @@
       "type": "fair"
     },
     {
-      "date": "2025-11-11",
+      "date": "2026-11-11",
       "duration": "TBD",
       "country": "Spain",
       "city": "Madrid",
@@ -395,7 +395,7 @@
       "type": "fair"
     },
     {
-      "date": "Preliminary date based on last year's event, waiting for details, approximately. Approximately November 11, 2025",
+      "date": "Preliminary date based on last year's event, waiting for details, approximately. Approximately November 11, 2026",
       "duration": "TBD",
       "country": "Netherlands",
       "city": "Amsterdam",
@@ -409,7 +409,7 @@
       "type": "fair"
     },
     {
-      "date": "Nov 14–15, 2025",
+      "date": "Nov 14–15, 2026",
       "duration": "TBD",
       "country": "Belgium",
       "city": "Liège",
@@ -423,7 +423,7 @@
       "type": "fair"
     },
     {
-      "date": "Nov 18–23, 2025",
+      "date": "Nov 18–23, 2026",
       "duration": "TBD",
       "country": "Switzerland",
       "city": "Lausanne",
@@ -437,7 +437,7 @@
       "type": "fair"
     },
     {
-      "date": "Nov 19–20, 2025",
+      "date": "Nov 19–20, 2026",
       "duration": "TBD",
       "country": "Guernsey",
       "city": "St Peter Port",
@@ -451,7 +451,7 @@
       "type": "fair"
     },
     {
-      "date": "Nov 21–22, 2025",
+      "date": "Nov 21–22, 2026",
       "duration": "TBD",
       "country": "Belgium",
       "city": "Namur",
@@ -465,7 +465,7 @@
       "type": "fair"
     },
     {
-      "date": "2025-11-24",
+      "date": "2026-11-24",
       "duration": "TBD",
       "country": "Portugal",
       "city": "Lisbon",
@@ -479,7 +479,7 @@
       "type": "fair"
     },
     {
-      "date": "Nov 25–26, 2025",
+      "date": "Nov 25–26, 2026",
       "duration": "TBD",
       "country": "Finland",
       "city": "Helsinki",
@@ -493,7 +493,7 @@
       "type": "fair"
     },
     {
-      "date": "Nov 28–29, 2025",
+      "date": "Nov 28–29, 2026",
       "duration": "TBD",
       "country": "Belgium",
       "city": "Brussels",
@@ -521,7 +521,7 @@
       "type": "fair"
     },
     {
-      "date": "2026-01-29",
+      "date": "2026-03-29",
       "duration": "TBD",
       "country": "Sweden",
       "city": "Helsingborg",
@@ -591,7 +591,7 @@
       "type": "fair"
     },
     {
-      "date": "Preliminary date based on last year's event, waiting for details. Approximately  March 10, 2025",
+      "date": "Preliminary date based on last year's event, waiting for details. Approximately  March 10, 2026",
       "duration": "",
       "country": "Norway",
       "city": "Oslo",
@@ -605,7 +605,7 @@
       "type": "fair"
     },
     {
-      "date": "Preliminary date based on last year's event, waiting for details. Approximately  March 11, 2025",
+      "date": "Preliminary date based on last year's event, waiting for details. Approximately  March 11, 2026",
       "duration": "",
       "country": "Sweden",
       "city": "Stockholm",
@@ -619,7 +619,7 @@
       "type": "fair"
     },
     {
-      "date": "Preliminary date based on last year's event, waiting for details. March 12, 2025",
+      "date": "Preliminary date based on last year's event, waiting for details. March 12, 2026",
       "duration": "",
       "country": "Denmark",
       "city": "Copenhagen",
@@ -801,7 +801,7 @@
       "type": "fair"
     },
     {
-      "date": "2025-04-13",
+      "date": "2026-04-13",
       "duration": "One day",
       "country": "Finland",
       "city": "Helsinki",
@@ -829,7 +829,7 @@
       "type": "fair"
     },
     {
-      "date": "2025-04-15",
+      "date": "2026-04-15",
       "duration": "One day",
       "country": "Denmark",
       "city": "Copenhagen",
@@ -885,7 +885,7 @@
       "type": "fair"
     },
     {
-      "date": "2025-04-17",
+      "date": "2026-04-17",
       "duration": "One day",
       "country": "Norway",
       "city": "Skagerak/Oslo",
@@ -1168,7 +1168,7 @@
   "upcoming": [
     {
       "name": "NSAC",
-      "date": "2025-09-20",
+      "date": "2026-09-20",
       "city": "I need to sleep there. Is there a train going back to Nässjö in the evening?  I checked, there are no trains back in the evening. Cause the train leaves 6 minutes after the event ends. There is a train to Växjö at 21.00. But dad doesn't wanna pick me up in the middle of the night. So stay in copenhagen 2 nights. ",
       "country": "8:00 AM - 7:00 PM",
       "status": "Klub, Linnésgade 25, 1361 Copenhagen",
@@ -1176,7 +1176,7 @@
     },
     {
       "name": "Education USA Madrid",
-      "date": "2025-09-30",
+      "date": "2026-09-30",
       "city": "",
       "country": "",
       "status": "",
@@ -1184,7 +1184,7 @@
     },
     {
       "name": "College/Career Fair",
-      "date": "2025-10-15",
+      "date": "2026-10-15",
       "city": "",
       "country": "5:30-7 PM",
       "status": "Vilseck High School MPR",
@@ -1192,7 +1192,7 @@
     },
     {
       "name": "USA College Day",
-      "date": "September 26-27, 2025",
+      "date": "September 26-27, 2026",
       "city": "",
       "country": "Fri: 2:45pm-7pm, Sat: 9:15am-4pm",
       "status": "Kensington Town Hall",
@@ -1200,7 +1200,7 @@
     },
     {
       "name": "Framtidsmässan",
-      "date": "2026-01-30",
+      "date": "2026-03-30",
       "city": "",
       "country": "",
       "status": "Malmömässan",
@@ -1208,7 +1208,7 @@
     },
     {
       "name": "Brussels College Night",
-      "date": "2025-09-30",
+      "date": "2026-09-30",
       "city": "",
       "country": "6-8 PM",
       "status": "International School of Brussels",
@@ -1216,7 +1216,7 @@
     },
     {
       "name": "Netherlands College Night",
-      "date": "2025-10-01",
+      "date": "2026-10-01",
       "city": "",
       "country": "5:00 - 8:30 PM",
       "status": "Jaarbeursplein 6, 3521 AL Utrecht",
